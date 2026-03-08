@@ -10,7 +10,7 @@ Bienvenido a mi portafolio profesional. Aquí encontrarás mis proyectos más re
 
 **Tecnologías:**
 - Backend: ASP.NET Core 9, C#
-- Frontend: Angular 20, TypeScript, RxJS
+- Frontend: Angular 20, TypeScript, RxJS (también disponible con React)
 - Base de datos: In-Memory (desarrollo)
 - Testing: xUnit, Moq, FluentAssertions
 
@@ -186,6 +186,38 @@ Este proyecto demuestra:
 
 ---
 
+## � Variantes del Proyecto
+
+### React Frontend (Alternativa)
+
+**Descripción:** El mismo proyecto de carrito de compras también está disponible con React como frontend.
+
+**Tecnologías:**
+- Backend: ASP.NET Core 9, C# (mismo)
+- Frontend: React 18+, TypeScript, Axios/Fetch API
+- Estado: React Context API o Redux
+- Estilo: TailwindCSS o CSS Modules
+- Testing: Jest, React Testing Library
+
+**Ventajas de la versión React:**
+✅ Curva de aprendizaje más suave  
+✅ Comunidad más grande  
+✅ Más librerías disponibles  
+✅ Mejor rendimiento en aplicaciones grandes  
+✅ Equilibrio entre funcionalidad y simplicidad  
+
+**Comparativa Angular vs React:**
+
+| Aspecto | Angular | React |
+|---------|---------|-------|
+| **Curva Aprendizaje** | Pronunciada | Suave |
+| **Bundle Size** | ~200KB | ~40KB |
+| **Comunidad** | Grande | Muy Grande |
+| **Escalabilidad** | Excelente | Muy Buena |
+| **Learning** | Framework completo | Librería; más flexible |
+
+---
+
 ## 📚 Otros Proyectos
 
 ### (Próximamente)
@@ -195,6 +227,8 @@ Estoy trabajando en documentar más proyectos. Esta sección se actualizará con
 - [ ] Aplicaciones móviles con React Native
 - [ ] Data science y machine learning
 - [ ] Integraciones con APIs externas
+- [ ] Dashboard con React y gráficas avanzadas
+- [ ] PWA (Progressive Web Apps) con React
 
 ---
 

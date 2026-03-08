@@ -1,6 +1,6 @@
 # 🛒 Carrito de Compras - Shopping Cart
 
-Aplicación full-stack de carrito de compras desarrollada con **ASP.NET Core 9** (Backend) y **Angular 20** (Frontend).
+Aplicación full-stack de carrito de compras desarrollada con **ASP.NET Core 9** (Backend) y **Angular 20** o **React 18+** (Frontend).
 
 > 👨‍💼 **Este es uno de mis proyectos destacados.** [Ver mi portafolio completo →](./PORTFOLIO.md)
 
@@ -63,6 +63,25 @@ Carrito de compras/
 ├── Test/                             # Pruebas unitarias
 └── README.md                         # Este archivo
 ```
+
+---
+
+## 🔄 Opciones de Frontend
+
+Este proyecto está disponible con dos opciones de frontend:
+
+### 1. **Angular 20** (Actual)
+- Framework completo y robusto
+- Excelente para aplicaciones empresariales grandes
+- TypeScript built-in
+- Curva de aprendizaje más pronunciada
+
+### 2. **React 18+** (Alternativa)
+- Librería flexible y ligera
+- Gran comunidad y muchas librerías disponibles
+- Ideal para aplicaciones escalables
+- Curva de aprendizaje más suave
+- [Ver más comparativa →](./PORTFOLIO.md#-variantes-del-proyecto)
 
 ---
 
