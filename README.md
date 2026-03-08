@@ -172,4 +172,4 @@ npm start
 MIT
 
 ## 👤 Autor
-José García - Aplicación educativa con Clean Architecture
+Joseph sagastegui - Aplicación educativa con Clean Architecture
