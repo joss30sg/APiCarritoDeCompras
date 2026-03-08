@@ -153,10 +153,6 @@ npm start
 
 ---
 
-## 🚀 MÁS INFORMACIÓN
-
-- [📋 PORTFOLIO.md](./PORTFOLIO.md) - **Ver mi portafolio completo con demos de proyectos**
-
 ### Tecnologías Utilizadas
 - **Backend:** ASP.NET Core 9, C#, JWT, EntityFramework
 - **Frontend:** Angular 20, TypeScript, RxJS
