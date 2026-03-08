@@ -1,0 +1,93 @@
+<div class="products-container">
+  <h2>Productos Disponibles</h2>
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="product-image">
+        <img [src]="product.imageUrl" [alt]="product.name" />
+      </div>
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p class="description">{{ product.description }}</p>
+        <div class="product-footer">
+          <span class="price">S/ {{ product.price.toFixed(2) }}</span>
+          <span class="stock" [class.low-stock]="product.quantity <= 5">
+            Stock: {{ product.quantity }}
+          </span>
+        </div>
+        <button 
+          class="add-btn" 
+          (click)="openProductModal(product)"
+          [disabled]="product.quantity === 0">
+          {{ product.quantity === 0 ? 'Agotado' : 'Agregar al Carrito' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para agregar producto -->
+<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <!-- Encabezado Modal -->
+    <div class="modal-header">
+      <h2>Agregar al Carrito</h2>
+      <button class="close-btn" (click)="closeModal()">✕</button>
+    </div>
+
+    <div class="modal-body" *ngIf="selectedProduct">
+      <!-- Sección Imagen -->
+      <div class="modal-image">
+        <img [src]="selectedProduct.imageUrl" [alt]="selectedProduct.name" />
+      </div>
+
+      <!-- Sección Información -->
+      <div class="modal-info">
+        <h3 class="product-name">{{ selectedProduct.name }}</h3>
+        <p class="product-description">{{ selectedProduct.description }}</p>
+
+        <!-- Precio y Stock -->
+        <div class="price-section">
+          <span class="price">S/ {{ selectedProduct.price.toFixed(2) }}</span>
+          <span class="stock-badge">Stock disponible: {{ selectedProduct.quantity }}</span>
+        </div>
+
+        <!-- Selector de Cantidad -->
+        <div class="quantity-section">
+          <label>Cantidad:</label>
+          <div class="quantity-selector">
+            <button 
+              class="qty-btn" 
+              (click)="decreaseQuantity()"
+              [disabled]="selectedQuantity <= 1">
+              −
+            </button>
+            <input 
+              type="number" 
+              [(ngModel)]="selectedQuantity" 
+              min="1" 
+              [max]="selectedProduct.quantity"
+              class="qty-input">
+            <button 
+              class="qty-btn" 
+              (click)="increaseQuantity()"
+              [disabled]="selectedQuantity >= selectedProduct.quantity">
+              +
+            </button>
+          </div>
+        </div>
+
+        <!-- Subtotal -->
+        <div class="subtotal-section">
+          <span class="subtotal-label">Subtotal:</span>
+          <span class="subtotal-price">S/ {{ (selectedProduct.price * selectedQuantity).toFixed(2) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie de Modal -->
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+      <button class="btn-confirm" (click)="addToCart()">Agregar al Carrito</button>
+    </div>
+  </div>
+</div>

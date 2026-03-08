@@ -1,0 +1,94 @@
+<div class="login-container">
+  <div class="login-wrapper">
+    <div class="login-card">
+      <!-- Header -->
+      <div class="login-header">
+        <div class="logo-section">
+          <h1 class="logo-text">🛒 Carrito de Compras</h1>
+          <p class="tagline">Compra de forma segura y rápida</p>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2>Iniciar Sesión</h2>
+        <p class="subtitle">Accede a tu cuenta para continuar comprando</p>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <!-- Username Field -->
+          <div class="form-group">
+            <label for="username" class="form-label">
+              <span class="label-text">Usuario</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input
+                type="text"
+                id="username"
+                formControlName="username"
+                class="form-control"
+                placeholder="Ingresa tu usuario"
+                [class.is-invalid]="submitted && f['username'].errors"
+              />
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && f['username'].errors">
+              <span *ngIf="f['username'].errors['required']">El usuario es requerido</span>
+              <span *ngIf="f['username'].errors['minlength']">El usuario debe tener al menos 3 caracteres</span>
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div class="form-group">
+            <label for="password" class="form-label">
+              <span class="label-text">Contraseña</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon">🔒</span>
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                id="password"
+                formControlName="password"
+                class="form-control"
+                placeholder="Ingresa tu contraseña"
+                [class.is-invalid]="submitted && f['password'].errors"
+              />
+              <button
+                type="button"
+                class="toggle-password"
+                (click)="togglePasswordVisibility()"
+                [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+              >
+                {{ showPassword ? '👁️' : '👁️‍🗨️' }}
+              </button>
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && f['password'].errors">
+              <span *ngIf="f['password'].errors['required']">La contraseña es requerida</span>
+              <span *ngIf="f['password'].errors['minlength']">La contraseña debe tener al menos 6 caracteres</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="btn-primary btn-full"
+            [disabled]="loading"
+          >
+            <span class="btn-icon">🔓</span>
+            {{ loading ? '⏳ Iniciando sesión...' : 'Iniciar Sesión' }}
+          </button>
+        </form>
+
+        <!-- Register Section -->
+        <div class="register-section">
+          <p class="register-text">¿No tienes cuenta?</p>
+          <a (click)="goToRegister()" class="register-link">Crear una nueva cuenta</a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="login-footer">
+        <p class="footer-text">🔒 Tu información está segura y encriptada</p>
+      </div>
+    </div>
+  </div>
+</div>

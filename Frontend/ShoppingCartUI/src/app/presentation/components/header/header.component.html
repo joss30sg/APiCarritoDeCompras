@@ -1,0 +1,54 @@
+<header class="navbar" *ngIf="authState?.isAuthenticated">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <div class="navbar-brand">
+      <a (click)="goHome()" class="logo">🛒 Carrito de Compras</a>
+    </div>
+
+    <!-- Desktop Menu -->
+    <nav class="navbar-menu">
+    </nav>
+
+    <!-- User Section -->
+    <div class="navbar-user">
+      <div *ngIf="authState?.isAuthenticated" class="user-info">
+        <span class="username">👤 {{ authState?.user?.username }}</span>
+        
+        <!-- Shopping Cart Icon -->
+        <button 
+          *ngIf="authState?.isAuthenticated"
+          class="cart-icon-btn"
+          (click)="goToCart()"
+          title="Ver carrito de compras">
+          <span class="cart-icon">🛒</span>
+          <span *ngIf="cartItemCount > 0" class="cart-badge">{{ cartItemCount }}</span>
+        </button>
+        
+        <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
+      </div>
+
+      <div *ngIf="!authState?.isAuthenticated" class="auth-links">
+        <button class="btn-login" (click)="goLogin()">Iniciar Sesión</button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" (click)="toggleMenu()" [class.active]="showMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav *ngIf="showMenu" class="mobile-menu">
+    <hr />
+    <div *ngIf="authState?.isAuthenticated">
+      <span class="mobile-user">👤 {{ authState?.user?.username }}</span>
+      <button class="btn-logout btn-full" (click)="logout()">Cerrar Sesión</button>
+    </div>
+    <div *ngIf="!authState?.isAuthenticated">
+      <button class="btn-login btn-full" (click)="goLogin()">Iniciar Sesión</button>
+    </div>
+  </nav>
+</header>

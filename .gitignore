@@ -1,0 +1,154 @@
+# ================================================
+# CARPETAS DEL PROYECTO (ignorar contenido compilado)
+# ================================================
+
+# Backend (.NET Core)
+Backend/bin/
+Backend/obj/
+Backend/**/bin/
+Backend/**/obj/
+Backend/**/Debug/
+Backend/**/Release/
+
+# Frontend (Angular)
+Frontend/node_modules/
+Frontend/dist/
+Frontend/**/.angular/
+Frontend/**/.angular/cache/
+Frontend/**/dist/
+
+# Tests
+Test/bin/
+Test/obj/
+Test/**/bin/
+Test/**/obj/
+Test/TestResults/
+Test/coverage/
+
+# ================================================
+# VISUAL STUDIO AND IDE
+# ================================================
+
+.vs/
+.vscode/
+.idea/
+.idea_modules/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.DotSettings
+*.swp
+*.swo
+*~
+
+# Rider
+.idea/
+
+# ================================================
+# BUILD RESULTS
+# ================================================
+
+bin/
+obj/
+Debug/
+Release/
+out/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.lock
+
+# ================================================
+# TEST RESULTS AND COVERAGE
+# ================================================
+
+TestResults/
+coverage/
+coverage-report/
+**/TestResults/
+*.coverage
+*.coveragexml
+*.cobertura.xml
+*.trx
+coverage.cobertura.xml
+Opendb.log
+Opendb.log.log.lock
+
+# ================================================
+# NUGET PACKAGES
+# ================================================
+
+*.nupkg
+*.snupkg
+packages/
+!.nuget/
+.nuget/
+
+# ================================================
+# CONFIGURATION FILES
+# ================================================
+
+*.csproj.user
+*.pubxml
+*.publishproj
+*.publish.xml
+
+# ================================================
+# SYSTEM FILES
+# ================================================
+
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# ================================================
+# ENVIRONMENT AND TEMPORARY FILES
+# ================================================
+
+.env
+.env.local
+.env.*.local
+*.tmp
+*.bak
+appsettings.*.json
+!appsettings.Development.json
+!appsettings.Production.json
+
+# ================================================
+# 🔐 SECRETS - NUNCA COMITEAR ESTOS ARCHIVOS
+# ================================================
+
+secrets.json
+appsettings.Secrets.json
+.secrets/
+*.pem
+*.key
+*.pfx
+*.p12
+.env.secrets
+user-secrets/
+
+# ================================================
+# ANGULAR / NODE DEPENDENCIES
+# ================================================
+
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+/tmp/
+.angular/
+.angular/cache/
+
+# ================================================
+# CARPETAS ORIGINALES (mantener vacías o eliminar)
+# ================================================
+
+ShoppingCartApi/bin/
+ShoppingCartApi/obj/
+ShoppingCartUI/node_modules/
+ShoppingCartUI/dist/

@@ -1,0 +1,65 @@
+@ShoppingCartApi_HostAddress = http://localhost:5276
+
+### Registro de usuario
+POST {{ShoppingCartApi_HostAddress}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "Password123!"
+}
+
+### Login de usuario
+POST {{ShoppingCartApi_HostAddress}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "Password123!"
+}
+
+### Añadir producto al carrito
+# @name AddProduct
+POST {{ShoppingCartApi_HostAddress}}/api/ShoppingCart/add-product
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "cartId": 1,
+  "productId": 1,
+  "quantity": 1,
+  "selectedAttributeGroups": [
+    {
+      "groupAttributeId": 1,
+      "attributes": [
+        {
+          "attributeId": 101,
+          "defaultQuantity": 1,
+          "maxQuantity": 1
+        }
+      ]
+    }
+  ]
+}
+
+### Actualizar cantidad de producto en el carrito
+# @name UpdateProductQuantity
+PUT {{ShoppingCartApi_HostAddress}}/api/ShoppingCart/update-quantity
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "cartId": 1,
+  "productId": 1,
+  "quantity": 2
+}
+
+### Eliminar producto del carrito
+# @name RemoveProduct
+DELETE {{ShoppingCartApi_HostAddress}}/api/ShoppingCart/remove-product/1
+Authorization: Bearer {{token}}
+
+### Obtener contenido del carrito
+# @name GetShoppingCart
+GET {{ShoppingCartApi_HostAddress}}/api/ShoppingCart/get-cart
+Authorization: Bearer {{token}}

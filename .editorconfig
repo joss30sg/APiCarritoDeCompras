@@ -1,0 +1,74 @@
+# .editorconfig para proyectos .NET / C#
+# Mantiene formato y estilo consistentes en todo el equipo
+root = true
+
+# === Configuración general ===
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+end_of_line = crlf
+trim_trailing_whitespace = true
+
+# === Archivos C# ===
+[*.cs]
+# Estilo de indentación
+indent_style = space
+indent_size = 4
+
+# Uso de var
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+# Llaves
+csharp_new_line_before_open_brace = all
+csharp_new_line_between_query_expression_clauses = true
+
+# Espaciado y formato
+csharp_space_after_cast = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_around_binary_operators = before_and_after
+
+# Nombres
+dotnet_naming_rule.private_fields_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.private_fields_should_be_camel_case.symbols = private_fields
+dotnet_naming_rule.private_fields_should_be_camel_case.style = camel_case
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_symbols.private_fields.required_modifiers = 
+dotnet_naming_style.camel_case.capitalization = camel_case
+dotnet_naming_style.camel_case.required_prefix = _
+dotnet_naming_style.camel_case.required_suffix = 
+
+# Using directives
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = true
+
+# Estilo de llaves
+csharp_preserve_single_line_blocks = false
+csharp_preserve_single_line_statements = false
+
+# Expresiones y lambdas
+csharp_style_expression_bodied_methods = false:suggestion
+csharp_style_expression_bodied_properties = true:suggestion
+csharp_style_expression_bodied_indexers = true:suggestion
+csharp_style_expression_bodied_accessors = true:suggestion
+
+# === Archivos JSON, YAML, y Markdown ===
+[*.json]
+indent_size = 2
+[*.yml]
+indent_size = 2
+[*.yaml]
+indent_size = 2
+[*.md]
+trim_trailing_whitespace = false
+
+# === Configuración de pruebas (xUnit / MSTest / NUnit) ===
+[*.Tests.cs]
+dotnet_diagnostic.IDE0060.severity = none  # Ignora parámetros no usados en tests

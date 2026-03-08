@@ -1,0 +1,337 @@
+/* === Swagger UI Personalización Profesional === */
+
+:root {
+  --primary-color: #0066cc;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --dark-color: #2c3e50;
+  --light-color: #ecf0f1;
+}
+
+/* Personalización general */
+body {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+/* Encabezado profesional */
+.topbar {
+  background: linear-gradient(135deg, var(--dark-color) 0%, #34495e 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.topbar-wrapper {
+  padding: 20px;
+}
+
+.topbar .logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Sección de información */
+.info {
+  background: white;
+  border-radius: 8px;
+  padding: 25px;
+  margin: 20px;
+  border-left: 5px solid var(--primary-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info .title {
+  color: var(--dark-color);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.info .description {
+  color: #555;
+  line-height: 1.8;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Contacto en el encabezado */
+.info .contact {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 15px;
+  border-left: 3px solid var(--success-color);
+}
+
+.info .contact a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.info .contact a:hover {
+  text-decoration: underline;
+}
+
+/* Contenedor principal */
+.swagger-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Operaciones/Endpoints */
+.opblock {
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  margin: 15px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.opblock:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+/* Colores para métodos HTTP */
+.opblock.opblock-get {
+  border-left: 4px solid #61affe;
+}
+
+.opblock.opblock-post {
+  border-left: 4px solid #49cc90;
+}
+
+.opblock.opblock-put {
+  border-left: 4px solid #fca130;
+}
+
+.opblock.opblock-delete {
+  border-left: 4px solid #f93e3e;
+}
+
+.opblock.opblock-patch {
+  border-left: 4px solid #50e3c2;
+}
+
+/* Encabezados de operación */
+.opblock-summary {
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: 500;
+}
+
+.opblock-summary:hover {
+  background: #f9f9f9;
+}
+
+.opblock-summary-method {
+  min-width: 80px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
+
+.opblock.opblock-get .opblock-summary-method {
+  background: #61affe;
+}
+
+.opblock.opblock-post .opblock-summary-method {
+  background: #49cc90;
+}
+
+.opblock.opblock-put .opblock-summary-method {
+  background: #fca130;
+}
+
+.opblock.opblock-delete .opblock-summary-method {
+  background: #f93e3e;
+}
+
+/* Parámetros */
+.parameters-container {
+  background: #f9f9f9;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.parameter__name {
+  font-weight: 600;
+  color: var(--dark-color);
+}
+
+.parameter__type {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* Respuestas */
+.responses-wrapper {
+  margin: 20px 0;
+}
+
+.response-col_description {
+  flex: 3;
+}
+
+.response-col_status {
+  min-width: 100px;
+}
+
+/* Códigos de respuesta */
+.response.bidi-response {
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 4px;
+  border-left: 4px solid #d0d0d0;
+  background: #fafafa;
+}
+
+.response.response-success {
+  border-left-color: var(--success-color);
+  background: #f0f8f5;
+}
+
+.response.response-error {
+  border-left-color: var(--danger-color);
+  background: #fdf5f5;
+}
+
+.response.response-warning {
+  border-left-color: var(--warning-color);
+  background: #fffbf0;
+}
+
+/* Botones */
+button.btn {
+  border-radius: 4px;
+  font-weight: 600;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+}
+
+button.btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+button.btn-primary:hover {
+  background: #0052a3;
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+}
+
+/* Modelo/Schema */
+.model-box {
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.model {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.model-title {
+  background: #f5f5f5;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e0e0;
+  color: var(--dark-color);
+}
+
+/* Ejemplos de código */
+.highlight-code {
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 15px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.json-key {
+  color: #3498db;
+  font-weight: 600;
+}
+
+.json-value {
+  color: #2ecc71;
+}
+
+.json-number {
+  color: #e74c3c;
+}
+
+/* Filtro de búsqueda */
+.topbar-search {
+  max-width: 400px;
+}
+
+.search-box input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* Esquema de seguridad */
+.scope-def-value {
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* Animaciones suaves */
+* {
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+/* Footer personalizado */
+.info-footer {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-size: 12px;
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .info .title {
+    font-size: 22px;
+  }
+  
+  .opblock-summary-path {
+    max-width: 100%;
+    word-break: break-word;
+  }
+}

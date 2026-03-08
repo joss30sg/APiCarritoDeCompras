@@ -1,0 +1,248 @@
+<div class="cart-container">
+  <!-- MODAL DE PRODUCTOS COMPRADOS DUPLICADOS -->
+  <div *ngIf="showDuplicatePurchaseModal" class="order-confirmation-overlay">
+    <div class="order-confirmation-modal duplicate-purchase-modal">
+      <!-- Icono de advertencia animado -->
+      <div class="confirmation-header warning-header">
+        <div class="warning-icon">⚠️</div>
+        <h1>Productos Ya Comprados</h1>
+      </div>
+
+      <!-- Mensaje informativo -->
+      <div class="duplicate-message">
+        <p>Los siguientes productos ya están en tu historial de compras. <strong>No puedes comprar el mismo producto dos veces.</strong></p>
+      </div>
+
+      <!-- Lista de productos duplicados -->
+      <div class="duplicate-products-list">
+        <div *ngFor="let product of duplicateProducts" class="duplicate-product-item">
+          <div class="duplicate-icon">🔄</div>
+          <div class="duplicate-info">
+            <p class="duplicate-name">{{ product.name }}</p>
+            <p class="duplicate-id">ID: {{ product.productId }}</p>
+          </div>
+          <div class="purchase-status">
+            <span class="badge-purchased">✓ Comprado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opciones de acción -->
+      <div class="confirmation-actions">
+        <button class="btn btn-secondary" (click)="removeDuplicateProducts()">
+          <span class="icon">♻️</span> Eliminar del Carrito
+        </button>
+        <button class="btn btn-primary" (click)="closeDuplicatePurchaseModal()">
+          <span class="icon">📝</span> Revisar Carrito
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CONFIRMACIÓN DE ORDEN -->
+  <div *ngIf="showOrderConfirmation && lastOrder" class="order-confirmation-overlay">
+    <div class="order-confirmation-modal">
+      <!-- Icono de éxito animado -->
+      <div class="confirmation-header">
+        <div class="success-icon">✓</div>
+        <h1>¡Compra Realizada Exitosamente!</h1>
+      </div>
+
+      <!-- Detalles de la orden -->
+      <div class="order-details">
+        <div class="order-header-row">
+          <div class="order-info">
+            <p><strong>Número de Orden:</strong></p>
+            <p class="order-number">{{ lastOrder.orderNumber }}</p>
+          </div>
+          <div class="order-info">
+            <p><strong>Fecha:</strong></p>
+            <p>{{ lastOrder.orderDate }}</p>
+          </div>
+        </div>
+
+        <!-- Items comprados -->
+        <div class="order-items-section">
+          <h3>Productos Comprados:</h3>
+          <div class="order-items-list">
+            <div *ngFor="let item of lastOrder.items" class="order-item-mini">
+              <img [src]="item.imageUrl" [alt]="item.name" class="item-image-mini">
+              <div class="item-info-mini">
+                <p class="item-name">{{ item.name }}</p>
+                <p class="item-qty">Cantidad: {{ item.quantity }}</p>
+              </div>
+              <p class="item-price-mini">S/ {{ item.subtotal.toFixed(2) }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumen de precios -->
+        <div class="order-summary">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span>S/ {{ lastOrder.subtotal.toFixed(2) }}</span>
+          </div>
+          <div class="summary-row">
+            <span>Impuesto (10%):</span>
+            <span>S/ {{ lastOrder.tax.toFixed(2) }}</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total Pagado:</span>
+            <span class="total-amount">S/ {{ lastOrder.total.toFixed(2) }}</span>
+          </div>
+        </div>
+
+        <!-- Mensaje informativo -->
+        <div class="info-message">
+          <p>📧 Se ha enviado un correo de confirmación a tu cuenta</p>
+          <p>📦 Tu pedido será preparado y enviado en breve</p>
+        </div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="confirmation-actions">
+        <button class="btn btn-secondary" (click)="viewOrderHistory()">
+          <span class="icon">📋</span> Ver Historial de Órdenes
+        </button>
+        <button class="btn btn-primary" (click)="closeOrderConfirmation()">
+          <span class="icon">🛒</span> Continuar Comprando
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENCABEZADO DEL CARRITO -->
+  <div class="cart-header">
+    <h1>🛒 Mi Carrito de Compras</h1>
+    <div class="cart-actions-header">
+      <button class="btn-icon-text" (click)="viewOrderHistory()" title="Ver mis órdenes anteriores">
+        <span class="icon">📋</span> Mis Órdenes
+      </button>
+    </div>
+  </div>
+
+  <!-- CARRITO VACÍO -->
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <div class="empty-cart-content">
+      <div class="empty-icon">🛒</div>
+      <h2>Tu carrito está vacío</h2>
+      <p class="hint">Aún no has agregado productos. ¡Descubre nuestro catálogo!</p>
+      <button class="btn btn-primary large" (click)="continueShopping()">
+        <span class="icon">🏠</span> Ir a Productos
+      </button>
+    </div>
+  </div>
+
+  <!-- CARRITO CON PRODUCTOS -->
+  <div *ngIf="cartItems.length > 0" class="cart-content">
+    <div class="cart-main">
+      <!-- LISTA DE ITEMS -->
+      <div class="cart-items-section">
+        <h2 class="section-title">Productos en tu Carrito</h2>
+        <div class="items-header">
+          <span>Producto</span>
+          <span class="qty-col">Cantidad</span>
+          <span class="price-col">Precio Unit.</span>
+          <span class="subtotal-col">Subtotal</span>
+          <span class="action-col">Acción</span>
+        </div>
+
+        <div class="cart-items">
+          <div *ngFor="let item of cartItems" class="cart-item">
+            <div class="item-product">
+              <img [src]="item.product.imageUrl" [alt]="item.product.name" class="item-image">
+              <div class="item-info">
+                <h3>{{ item.product.name }}</h3>
+                <p class="item-sku">Código: {{ item.product.id }}</p>
+              </div>
+            </div>
+
+            <div class="item-quantity">
+              <span class="quantity-badge">{{ item.quantity }}</span>
+            </div>
+
+            <div class="item-unit-price">
+              <span class="price-value">S/ {{ item.product.price.toFixed(2) }}</span>
+            </div>
+
+            <div class="item-subtotal">
+              <span class="price-value">S/ {{ getItemSubtotal(item).toFixed(2) }}</span>
+            </div>
+
+            <div class="item-action">
+              <button 
+                class="btn-remove"
+                (click)="removeFromCart(item.product.id)"
+                title="Eliminar del carrito"
+                aria-label="Eliminar {{item.product.name}}">
+                <span class="icon">✕</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESUMEN Y CHECKOUT (COLUMNA DERECHA) -->
+    <div class="cart-sidebar">
+      <div class="summary-card">
+        <h2 class="section-title">Resumen</h2>
+
+        <div class="summary-breakdown">
+          <div class="summary-row">
+            <span class="summary-label">Subtotal:</span>
+            <span class="summary-value">S/ {{ subtotal.toFixed(2) }}</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Impuesto (10%):</span>
+            <span class="summary-value">S/ {{ taxAmount.toFixed(2) }}</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-row total">
+            <span class="summary-label">Total:</span>
+            <span class="summary-value total-amount">S/ {{ totalPrice.toFixed(2) }}</span>
+          </div>
+        </div>
+
+        <!-- BOTONES - AGRUPADOS -->
+        <div class="action-buttons">
+          <button 
+            class="btn btn-primary btn-checkout"
+            (click)="checkout()"
+            [disabled]="isProcessing || cartItems.length === 0"
+            [class.loading]="isProcessing">
+            <span *ngIf="!isProcessing" class="icon">💳</span>
+            <span *ngIf="isProcessing" class="loading-spinner"></span>
+            {{ isProcessing ? 'Procesando...' : 'Proceder al Pago' }}
+          </button>
+
+          <button 
+            class="btn btn-secondary"
+            (click)="continueShopping()">
+            <span class="icon">🛍️</span> Continuar Comprando
+          </button>
+
+          <button 
+            class="btn btn-danger"
+            (click)="clearCart()"
+            [disabled]="isProcessing">
+            <span class="icon">🗑️</span> Vaciar Carrito
+          </button>
+        </div>
+
+        <!-- NOTA DE ENVÍO -->
+        <div class="shipping-note">
+          <div class="note-icon">📦</div>
+          <div class="note-content">
+            <p><strong>Envío gratis</strong> en compras mayores a S/ 100</p>
+            <p class="small">Entrega en 2-3 días hábiles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

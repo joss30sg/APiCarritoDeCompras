@@ -1,0 +1,15 @@
+<div class="home-wrapper">
+  <!-- Mensaje de bienvenida personalizado -->
+  <div class="welcome-banner" *ngIf="authState.isAuthenticated && userName">
+    <div class="welcome-content">
+      <h1 class="greeting-text">
+        {{ greeting }}, <span class="user-name">{{ userName }}!</span>
+      </h1>
+      <p class="welcome-subtitle">Bienvenido a tu carrito de compras</p>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <app-product-list></app-product-list>
+  </div>
+</div>

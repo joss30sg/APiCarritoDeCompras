@@ -1,0 +1,224 @@
+<div class="order-history-container">
+  <!-- HEADER -->
+  <div class="order-history-header">
+    <div class="header-content">
+      <h1>📋 Mis Órdenes</h1>
+      <p class="subtitle">Historial completo de tus compras</p>
+    </div>
+    <button class="btn btn-primary" (click)="backToCart()">
+      <span class="icon">🛒</span> Volver al Carrito
+    </button>
+  </div>
+
+  <!-- ESTADÍSTICAS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">📦</div>
+      <div class="stat-content">
+        <p class="stat-label">Total de Órdenes</p>
+        <p class="stat-value">{{ totalOrders }}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div class="stat-content">
+        <p class="stat-label">Total Gastado</p>
+        <p class="stat-value">S/ {{ totalSpent.toFixed(2) }}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">✅</div>
+      <div class="stat-content">
+        <p class="stat-label">Órdenes Completadas</p>
+        <p class="stat-value">{{ orders.length }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTA DE ÓRDENES VACÍA -->
+  <div *ngIf="orders.length === 0" class="no-orders">
+    <div class="no-orders-content">
+      <div class="empty-icon">📭</div>
+      <h2>No tienes órdenes aún</h2>
+      <p>Comienza a comprar y tus órdenes aparecerán aquí</p>
+      <button class="btn btn-primary large" (click)="backToCart()">
+        <span class="icon">🛍️</span> Explorar Productos
+      </button>
+    </div>
+  </div>
+
+  <!-- LISTA DE ÓRDENES -->
+  <div *ngIf="orders.length > 0" class="orders-list">
+    <div *ngFor="let order of orders" class="order-card">
+      <div class="order-card-header">
+        <div class="order-info">
+          <div class="order-number-section">
+            <p class="order-label">Orden</p>
+            <p class="order-number">{{ order.orderNumber }}</p>
+          </div>
+          <div class="order-date-section">
+            <p class="order-label">Fecha</p>
+            <p class="order-date">{{ order.orderDate }}</p>
+          </div>
+          <div class="order-time-ago">
+            <p class="order-label">Hace</p>
+            <p class="time-ago">{{ getTimeAgo(order.createdAt) }}</p>
+          </div>
+        </div>
+
+        <div class="order-status">
+          <span [ngClass]="'badge-' + getStatusColor(order.status)">
+            {{ getOrderStatusLabel(order.status) }}
+          </span>
+        </div>
+      </div>
+
+      <div class="order-items-preview">
+        <div class="items-preview-label">
+          <span>{{ order.items.length }} {{ order.items.length === 1 ? 'Producto' : 'Productos' }}</span>
+        </div>
+        <div class="preview-items">
+          <div *ngFor="let item of order.items.slice(0, 3)" class="preview-item">
+            <img [src]="item.imageUrl" [alt]="item.name" class="preview-image">
+            <div class="preview-info">
+              <p class="preview-name">{{ item.name }}</p>
+              <p class="preview-qty">x{{ item.quantity }}</p>
+            </div>
+          </div>
+          <div *ngIf="order.items.length > 3" class="preview-more">
+            +{{ order.items.length - 3 }} más
+          </div>
+        </div>
+      </div>
+
+      <div class="order-footer">
+        <div class="order-total">
+          <span class="total-label">Total:</span>
+          <span class="total-amount">S/ {{ order.total.toFixed(2) }}</span>
+        </div>
+        <button class="btn btn-secondary" (click)="selectOrder(order)">
+          <span class="icon">👁️</span> Ver Detalles
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE DETALLES DE ORDEN -->
+<div *ngIf="selectedOrder" class="order-details-overlay">
+  <div class="order-details-modal">
+    <!-- Hero Section -->
+    <div class="details-header">
+      <h2>Detalles de tu Orden</h2>
+      <button class="btn-close" (click)="closeOrderDetails()">✕</button>
+    </div>
+
+    <div class="modal-content">
+      <!-- Información de la Orden -->
+      <div class="order-info-section">
+        <h3>Información de la Orden</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <p class="info-label">Número de Orden</p>
+            <p class="info-value">{{ selectedOrder.orderNumber }}</p>
+          </div>
+          <div class="info-item">
+            <p class="info-label">Fecha</p>
+            <p class="info-value">{{ selectedOrder.orderDate }}</p>
+          </div>
+          <div class="info-item">
+            <p class="info-label">Estado</p>
+            <p class="info-value">
+              <span [ngClass]="'badge-' + getStatusColor(selectedOrder.status)">
+                {{ getOrderStatusLabel(selectedOrder.status) }}
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de Productos -->
+      <div class="items-section">
+        <h3>Productos Comprados</h3>
+        <div class="items-detail-list">
+          <div *ngFor="let item of selectedOrder.items" class="item-detail">
+            <img [src]="item.imageUrl" [alt]="item.name" class="item-detail-image">
+            <div class="item-detail-info">
+              <h4>{{ item.name }}</h4>
+              <p class="item-id">ID: {{ item.id }}</p>
+            </div>
+            <div class="item-detail-qty">
+              <span class="qty-label">Cantidad:</span>
+              <span class="qty-value">{{ item.quantity }}</span>
+            </div>
+            <div class="item-detail-price">
+              <span class="price-unit">S/ {{ item.price.toFixed(2) }}</span>
+              <span class="price-subtotal" title="Subtotal para este producto">S/ {{ item.subtotal.toFixed(2) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumen de Precios -->
+      <div class="price-summary">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span>S/ {{ selectedOrder.subtotal.toFixed(2) }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Impuesto (10%):</span>
+          <span>S/ {{ selectedOrder.tax.toFixed(2) }}</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total Pagado:</span>
+          <span>S/ {{ selectedOrder.total.toFixed(2) }}</span>
+        </div>
+      </div>
+
+      <!-- Información de Entrega -->
+      <div class="shipping-info">
+        <h3>Información de Entrega</h3>
+        <div class="status-timeline">
+          <div class="timeline-item" [class.completed]="selectedOrder.status === 'completed'">
+            <div class="timeline-dot">✓</div>
+            <div class="timeline-content">
+              <p class="timeline-label">Orden Confirmada</p>
+              <p class="timeline-date">{{ selectedOrder.orderDate }}</p>
+            </div>
+          </div>
+          <div class="timeline-item" [class.active]="selectedOrder.status === 'completed'">
+            <div class="timeline-dot">📦</div>
+            <div class="timeline-content">
+              <p class="timeline-label">En Preparación</p>
+              <p class="timeline-date">Próximamente</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">🚚</div>
+            <div class="timeline-content">
+              <p class="timeline-label">En Tránsito</p>
+              <p class="timeline-date">En 2-3 días</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">🏠</div>
+            <div class="timeline-content">
+              <p class="timeline-label">Entregado</p>
+              <p class="timeline-date">Por confirmar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="closeOrderDetails()">
+        <span class="icon">✕</span> Cerrar
+      </button>
+      <button class="btn btn-primary" (click)="backToCart()">
+        <span class="icon">🛒</span> Ir al Carrito
+      </button>
+    </div>
+  </div>
+</div>
