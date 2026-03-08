@@ -2,6 +2,8 @@
 
 Aplicación full-stack de carrito de compras desarrollada con **ASP.NET Core 9** (Backend) y **Angular 20** (Frontend).
 
+> 👨‍💼 **Este es uno de mis proyectos destacados.** [Ver mi portafolio completo →](./PORTFOLIO.md)
+
 ---
 
 ## ⚡ INICIO RÁPIDO (5 minutos)
@@ -153,6 +155,7 @@ npm start
 
 ## 🚀 MÁS INFORMACIÓN
 
+- [📋 PORTFOLIO.md](./PORTFOLIO.md) - **Ver mi portafolio completo con demos de proyectos**
 - [CAMBIOS_REALIZADOS.md](./CAMBIOS_REALIZADOS.md) - Cambios implementados
 - [RESUMEN_EJECUTIVO.md](./RESUMEN_EJECUTIVO.md) - Resumen del proyecto
 - [COMO_VERIFICAR_COMPRAS.md](./COMO_VERIFICAR_COMPRAS.md) - Guía de compras
