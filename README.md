@@ -172,13 +172,6 @@ npm start
 
 ---
 
-## 🚀 MÁS INFORMACIÓN
-
-- [📋 PORTFOLIO.md](./PORTFOLIO.md) - **Ver mi portafolio completo con demos de proyectos**
-- [CAMBIOS_REALIZADOS.md](./CAMBIOS_REALIZADOS.md) - Cambios implementados
-- [RESUMEN_EJECUTIVO.md](./RESUMEN_EJECUTIVO.md) - Resumen del proyecto
-- [COMO_VERIFICAR_COMPRAS.md](./COMO_VERIFICAR_COMPRAS.md) - Guía de compras
-
 ### Tecnologías Utilizadas
 - **Backend:** ASP.NET Core 9, C#, JWT, Dapper
 - **Frontend:** Angular 20, TypeScript, RxJS
