@@ -9,9 +9,9 @@ Bienvenido a mi portafolio profesional. Aquí encontrarás mis proyectos más re
 **Descripción:** Aplicación completa de e-commerce con autenticación JWT, gestión de carrito y historial de órdenes.
 
 **Tecnologías:**
-- Backend: ASP.NET Core 9, C#
+- Backend: ASP.NET Core 9, C#, Dapper
 - Frontend: Angular 20, TypeScript, RxJS (también disponible con React)
-- Base de datos: In-Memory (desarrollo)
+- Base de datos: In-Memory (desarrollo), SQL Server compatible
 - Testing: xUnit, Moq, FluentAssertions
 
 **Características:**

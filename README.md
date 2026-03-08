@@ -180,9 +180,9 @@ npm start
 - [COMO_VERIFICAR_COMPRAS.md](./COMO_VERIFICAR_COMPRAS.md) - Guía de compras
 
 ### Tecnologías Utilizadas
-- **Backend:** ASP.NET Core 9, C#, JWT, EntityFramework
+- **Backend:** ASP.NET Core 9, C#, JWT, Dapper
 - **Frontend:** Angular 20, TypeScript, RxJS
-- **Base de datos:** In-Memory (desarrollo)
+- **Base de datos:** In-Memory (desarrollo), SQL Server compatible
 - **Testing:** xUnit, Moq, FluentAssertions
 
 ---
